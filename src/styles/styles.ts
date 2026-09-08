@@ -140,5 +140,60 @@ const createStyles = (theme:any, width:any, height:any, insets:any)=>StyleSheet.
       height:20,
       alignItems:'center',
       justifyContent:'center'
-    }
+    },
+    tabBarContainer: {
+      position: "absolute",
+
+      bottom: 20,
+      left: 0,
+      right: 0,
+
+      alignItems: "center",
+    },
+
+    navBar: {
+      width: width - 36,
+      height: 50,
+
+      backgroundColor: "#062D3D",
+
+      borderRadius: Radius.md,
+
+      flexDirection: "row",
+
+      alignItems: "center",
+      justifyContent: "space-around",
+
+      paddingHorizontal: 20,
+
+      // iOS shadow
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 8,
+      },
+      shadowOpacity: 0.15,
+      shadowRadius: 15,
+
+      // Android
+      elevation: 8,
+    },
+
+    tab: {
+      width: 30,
+      height: 30,
+      justifyContent: "center",
+      alignItems: "center",
+      position: "relative",
+    },
+
+    activeIndicator: {
+      position: "absolute",
+      width: 16,
+      height: 16,
+      borderRadius: 8,
+      backgroundColor: Colors.primary,
+      top: 0,
+      left: 7,
+    },
 });

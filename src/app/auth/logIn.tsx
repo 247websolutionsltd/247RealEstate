@@ -45,7 +45,7 @@ export default function LogIn(){
                     <View style={styles.line}/>
                 </View>
                 <View style={styles.socialRow}>
-                    <TouchableOpacity style={styles.socialBtn}>
+                    <TouchableOpacity style={styles.socialBtn} onPress={()=>router.navigate("/(tabs)/home")}>
                         <Image source={require('../../../assets/images/google.png')} style={{width:27, height:27, marginRight:5}}/>
                         <ThemedText >Google</ThemedText>
                     </TouchableOpacity>
