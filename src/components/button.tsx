@@ -3,10 +3,10 @@ import { useAuth } from '@/context/PageContext';
 import { useTheme } from '@/hooks/use-theme';
 import { MaterialIcons } from "@expo/vector-icons";
 import {
-    ActivityIndicator,
-    TouchableOpacity,
-    View,
-    ViewProps
+  ActivityIndicator,
+  TouchableOpacity,
+  View,
+  ViewProps
 } from "react-native";
 import { useStyles } from '../styles/styles';
 import { ThemedText } from "./themed-text";
@@ -49,6 +49,7 @@ export default function Button({
       onPress={onPress}
       style={[
         type === "primary" ? styles.button : styles.button2,
+        {opacity:disabled?0.5:1},
         style,
       ]}
       disabled={disabled}

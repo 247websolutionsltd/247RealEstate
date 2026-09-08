@@ -1,4 +1,4 @@
-import { Colors, Spacing } from "@/constants/theme";
+import { Spacing } from "@/constants/theme";
 import useHook from "@/hooks/general-hook";
 import { useTheme } from "@/hooks/use-theme";
 import { LinearGradient } from 'expo-linear-gradient';
@@ -8,20 +8,16 @@ import { ThemedText } from "./themed-text";
 const { width, height } = Dimensions.get("window");
 
 interface OnboardingType{
-  scrollToNext: () => void;
-  scrollBack: () => void;
-  item: any;
-  currentIndex: number;
-  onboardingData: any;
+  pageColor: string;
 }
 
-const OnboardingItem = ({ item, scrollToNext, scrollBack, currentIndex, onboardingData }:OnboardingType) => {
+const OnboardingItem = ({ pageColor }:OnboardingType) => {
   const theme = useTheme();
   const { isLoading, setIsLoading } = useHook();
   return (
     <View style={[styles.container, { width }]}>
       <LinearGradient
-        colors={['transparent', Colors.primary, Colors.primary]}
+        colors={['transparent', "#a88013d7", pageColor]}
         style={styles.textContainer}
       >
         <ThemedText type="subtitle" style={{color:"#FFF", marginBottom:Spacing.four}}>

@@ -1,4 +1,4 @@
-import { Colors, Spacing } from "@/constants/theme";
+import { Colors, Radius, Spacing } from "@/constants/theme";
 import { Dimensions, StyleSheet, useColorScheme } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -52,4 +52,93 @@ const createStyles = (theme:any, width:any, height:any, insets:any)=>StyleSheet.
       height:50,
       borderRadius:16
     },
+    addView:{
+      flex:1,
+      alignItems:'flex-end',
+      justifyContent:'flex-end',
+      position:'absolute',
+      height,
+      width,
+      paddingVertical: Spacing.three + 105,
+      paddingHorizontal: Spacing.three
+    },
+    add:{
+      padding:12,
+      borderRadius:200,
+      backgroundColor:Colors.primary
+    },
+    authImage:{
+      height:height/3,
+      width:'100%'
+    },
+    authImageView:{
+      flex:1,
+      backgroundColor:'#35353535',
+      alignItems:'center',
+      justifyContent:'flex-end',
+      padding:Spacing.five
+    },
+    textInputView:{
+      borderWidth:1,
+      borderColor:theme.line,
+      padding:Spacing.one,
+      borderRadius: Radius.sm,
+      flexDirection:'row',
+      alignItems:'center',
+      paddingRight:Spacing.two
+    },
+    line:{
+      backgroundColor:theme.line,
+      height:1,
+      flex:1
+    },
+    socialRow: {
+      flexDirection: "row",
+      gap: Spacing.three,
+      marginVertical:Spacing.two,
+      marginHorizontal:Spacing.three
+    },
+    socialBtn: {
+      flex: 1,
+      height: 46,
+      borderRadius: 12,
+      borderWidth: 1,
+      borderColor: theme.line,
+      backgroundColor: theme.card,
+      alignItems: "center",
+      justifyContent: "center",
+      flexDirection:'row'
+    },
+    createLabelView:{
+      flexDirection:'row',
+      margin:Spacing.three,
+      marginBottom:0
+    },
+    createLabel:{
+      height:4,
+      borderRadius:Radius.md,
+    },
+    registerInfo:{
+      padding:Spacing.two,
+      backgroundColor:theme.contrast,
+      borderRadius:Radius.sm
+    },
+    option:{
+      flexDirection:'row',
+      alignItems:'center',
+      backgroundColor:theme.background,
+      padding:Spacing.three,
+      borderWidth:1,
+      borderRadius:Radius.md,
+      marginVertical:Spacing.two,
+    },
+    optionCircle:{
+      borderWidth:1,
+      borderColor:theme.line,
+      borderRadius:Radius.pill,
+      width:20,
+      height:20,
+      alignItems:'center',
+      justifyContent:'center'
+    }
 });
