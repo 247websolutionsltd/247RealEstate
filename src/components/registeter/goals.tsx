@@ -2,7 +2,7 @@ import { Spacing } from "@/constants/theme";
 import { useAuth } from "@/context/PageContext";
 import { useTheme } from "@/hooks/use-theme";
 import { useStyles } from "@/styles/styles";
-import { useState } from "react";
+import { router } from "expo-router";
 import { View } from "react-native";
 import Button from "../button";
 import Option from "../option";
@@ -14,21 +14,20 @@ export default function Goals(){
     const styles = useStyles();
     const theme = useTheme();
     const {registerForm, updateRegisterField} = useAuth();
-    const [ option, setOption ] = useState(0);
-    const handleOption = (option:number)=>{
-        setOption(option);
+    const handleOption = (option:string)=>{
+        updateRegisterField("interest", option);
     }
     return(
         <View style={{flex:1, justifyContent:'space-between'}}>
             <View style={{paddingBottom:Spacing.three, paddingHorizontal:Spacing.three}}>
-                <Option title="Rent" desc="Looking to purchace" option={1} handleOption={handleOption} current={option}/>
-                <Option title="Land" desc="Looking to purchace" option={2} handleOption={handleOption} current={option}/>
-                <Option title="Shortlet" desc="Looking to purchace" option={3} handleOption={handleOption} current={option}/>
-                <Option title="Shop" desc="Looking to purchace" option={4} handleOption={handleOption} current={option}/>
-                <Option title="Warehouse" desc="Looking to purchace" option={5} handleOption={handleOption} current={option}/>
+                <Option title="Rent" desc="Looking to purchace" handleOption={handleOption} option={registerForm.interest}/>
+                <Option title="Land" desc="Looking to purchace" handleOption={handleOption} option={registerForm.interest}/>
+                <Option title="Shortlet" desc="Looking to purchace" handleOption={handleOption} option={registerForm.interest}/>
+                <Option title="Shop" desc="Looking to purchace" handleOption={handleOption} option={registerForm.interest}/>
+                <Option title="Warehouse" desc="Looking to purchace" handleOption={handleOption} option={registerForm.interest}/>
             </View>
             <View>
-                <Button onPress={()=>console.log(registerForm)} title="Create Account" style={{marginHorizontal:Spacing.three}} disabled={option===0}/>
+                <Button onPress={()=>router.navigate("/(tabs)/home")} title="Create Account" style={{marginHorizontal:Spacing.three}} disabled={registerForm.interest===""}/>
             </View>
         </View>
     )

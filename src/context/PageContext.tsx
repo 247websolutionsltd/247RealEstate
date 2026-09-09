@@ -11,6 +11,7 @@ type RegisterForm = {
   confirm: string;
   name: string;
   phone: string;
+  interest: string;
 };
 
 type LogInForm = {
@@ -22,7 +23,7 @@ type AuthContextType = {
   loading: boolean;
   registerForm: RegisterForm;
   setRegisterForm: any;
-  updateRegisterField: (field: "email" | "password" | "confirm" | "name" | "phone", value: string)=>void;
+  updateRegisterField: (field: "email" | "password" | "confirm" | "name" | "phone" | "interest", value: string)=>void;
   logInForm: LogInForm;
   setLogInForm: any;
   updateLogInField: (field: "email" | "password", value: string)=>void;
@@ -44,6 +45,7 @@ export function AuthProvider({
     confirm: "",
     name: "",
     phone: "",
+    interest: "",
   });
   
   const updateRegisterField = (

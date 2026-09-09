@@ -7,7 +7,7 @@ import useHook from "./general-hook";
 
 export default function useOnboard(){
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [progressIndex, setProgressIndex] = useState(0);
+    const [progressIndex, setProgressIndex] = useState(0.33);
     const flatListRef = useRef<FlatList<any> | null>(null);
     const { width, height } = Dimensions.get("window");
     const viewableItemsChanged = useRef(({ viewableItems }: any) => {
@@ -28,7 +28,7 @@ export default function useOnboard(){
         const index = Math.round(
         event.nativeEvent.contentOffset.x / width
         );
-        setProgressIndex(event.nativeEvent.contentOffset.x/(360*(onboardingData.length-1)))
+        setProgressIndex((event.nativeEvent.contentOffset.x + width)/(width*onboardingData.length))
         setCurrentIndex(index);
     };
 

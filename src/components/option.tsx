@@ -1,4 +1,5 @@
 import { Colors, Spacing } from "@/constants/theme";
+import { useAuth } from "@/context/PageContext";
 import { useTheme } from "@/hooks/use-theme";
 import { useStyles } from "@/styles/styles";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -8,23 +9,23 @@ import { ThemedText } from "./themed-text";
 interface OptionProps{
     title: string;
     desc: string;
-    option: number;
-    current: number;
-    handleOption: (option:number)=>void;
+    option: string;
+    handleOption: (option:string)=>void;
 }
-export default function Option({title, desc, option, handleOption, current}: OptionProps){
+export default function Option({title, desc, handleOption, option}: OptionProps){
     const styles = useStyles();
     const theme = useTheme();
+    const {registerForm, updateRegisterField} = useAuth();
     return(
         <TouchableOpacity style={[
             styles.option, {
-                borderColor:current===option?Colors.primary:theme.line,
-                backgroundColor:current===option?"#a8801317":theme.background,
-            }]} onPress={()=>handleOption(option)}>
+                borderColor:option===title.toLowerCase()?Colors.primary:theme.line,
+                backgroundColor:option===title.toLowerCase()?"#a8801317":theme.background,
+            }]} onPress={()=>handleOption(title.toLowerCase())}>
             <View style={[
             styles.optionCircle, {
-                borderColor:current===option?"transparent":theme.line,
-                backgroundColor:current===option?Colors.primary:"transparent",
+                borderColor:option===title.toLowerCase()?"transparent":theme.line,
+                backgroundColor:option===title.toLowerCase()?Colors.primary:"transparent",
             }]}>
                 <MaterialIcons name="check" size={16} color={"#FFF"}/>
             </View>

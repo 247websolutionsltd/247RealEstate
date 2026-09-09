@@ -15,9 +15,10 @@ export const Colors = {
     backgroundElement: '#F0F0F3',
     backgroundSelected: '#E0E1E6',
     textSecondary: '#60646C',
+    card: '#FFF',
     line: "#EDEBE7",
     contrast:"#F2F2F2",
-    paper:"#fefdf9"
+    paper:"#f5f3ec"
   },
   dark: {
     text: '#ffffff',
@@ -25,6 +26,7 @@ export const Colors = {
     backgroundElement: '#212225',
     backgroundSelected: '#2E3135',
     textSecondary: '#B0B4BA',
+    card: '#000',
     line: "#EDEBE7",
     contrast:"#ACACAC",
     paper:"#ebe7da"
