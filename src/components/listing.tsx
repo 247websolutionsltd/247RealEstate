@@ -1,10 +1,10 @@
 import { Colors, Radius, Spacing } from "@/constants/theme";
+import { useAuth } from "@/context/PageContext";
 import useHook from "@/hooks/general-hook";
 import { useTheme } from "@/hooks/use-theme";
 import { useStyles } from "@/styles/styles";
 import { MaterialIcons } from "@expo/vector-icons";
 import { ImageBackground } from "expo-image";
-import { useState } from "react";
 import { TouchableOpacity, TouchableOpacityProps, View } from "react-native";
 import { ThemedText } from "./themed-text";
 
@@ -15,12 +15,14 @@ interface ListingProps extends TouchableOpacityProps{
     info: string[];
     location: string;
     tag?: string;
+    onLike: ()=>void;
+    id: string
 }
-export function Listing1({image, title, price, info, location, tag, onPress}:ListingProps){
+export function Listing1({image, title, price, info, location, tag, onPress, onLike, id}:ListingProps){
     const styles = useStyles();
     const theme = useTheme();
-    const {linter, formatPrice} = useHook();
-    const [ liked, setLiked ] = useState(false);
+    const {linter, formatPrice, infoFormat} = useHook();
+    const {saved} = useAuth();
     return(
         <TouchableOpacity style={styles.listingView} onPress={onPress}>
             <ImageBackground source={{uri:image}} style={styles.listingImage} imageStyle={{borderTopRightRadius:Radius.md, borderTopLeftRadius:Radius.md}}>
@@ -38,8 +40,8 @@ export function Listing1({image, title, price, info, location, tag, onPress}:Lis
                         :
                         <></>
                     }
-                    <TouchableOpacity onPress={()=>setLiked(!liked)} style={styles.listingFavoriteView}>
-                        <MaterialIcons name={liked?"favorite":"favorite-border"} size={20} color={liked?'red':'#000'}/>
+                    <TouchableOpacity onPress={onLike} style={styles.listingFavoriteView}>
+                        <MaterialIcons name={saved.includes(id)?"favorite":"favorite-border"} size={20} color={saved.includes(id)?Colors.primary:'#000'}/>
                     </TouchableOpacity>
                 </View>
             </ImageBackground>
@@ -53,10 +55,10 @@ export function Listing1({image, title, price, info, location, tag, onPress}:Lis
                     <ThemedText type="small" style={{color:Colors.primary}}>₦{formatPrice(price)}</ThemedText>
                 </View>
                 <View style={[styles.line, {marginVertical:Spacing.one}]}/>
-                <View style={[styles.rowStretch, {paddingHorizontal:Spacing.one}]}>
+                <View style={[styles.row, {paddingHorizontal:Spacing.one}]}>
                     {
                         info.map((item,index)=>(
-                            <ThemedText key={index.toString()} style={{fontSize:10}}>{item}</ThemedText>
+                            <ThemedText key={index.toString()} style={{fontSize:10}}>{infoFormat(item)}{"   "}</ThemedText>
                         ))
                     }
                 </View>
@@ -65,19 +67,26 @@ export function Listing1({image, title, price, info, location, tag, onPress}:Lis
     )
 }
 
-export function Listing2({image, title, price, location, info, tag}:ListingProps){
+export function Listing2({image, title, price, location, info, tag, onPress, onLike, id}:ListingProps){
     const styles = useStyles();
     const theme = useTheme();
-    const {linter, formatPrice} = useHook();
-    const [ liked, setLiked ] = useState(false);
+    const {linter, formatPrice, infoFormat} = useHook();
+    const {saved} = useAuth();
     return(
-        <TouchableOpacity style={styles.listingView2}>
+        <TouchableOpacity style={styles.listingView2} onPress={onPress}>
             <ImageBackground source={{uri:image}} style={styles.listingImage2} imageStyle={{borderTopLeftRadius:Radius.md, borderBottomLeftRadius:Radius.md,}}>
                 {
-                    tag &&
-                    <View style={styles.tagView}>
-                        <ThemedText style={{color:'#FFF', fontSize:10, fontWeight:500}}>{tag}</ThemedText>
+                    tag === "new" ?
+                    <View style={[styles.tagView, {backgroundColor:'green',}]}>
+                        <ThemedText style={{color:'#FFF', fontSize:10, fontWeight:500}}>NEW</ThemedText>
                     </View>
+                    :
+                    tag === "exclusive" ?
+                    <View style={[styles.tagView, {backgroundColor:Colors.primary,}]}>
+                        <ThemedText style={{color:'#FFF', fontSize:10, fontWeight:500}}>EXCLUSIVE</ThemedText>
+                    </View>
+                    :
+                    <></>
                 }
             </ImageBackground>
             <View style={styles.listingRight}>
@@ -93,14 +102,14 @@ export function Listing2({image, title, price, location, info, tag}:ListingProps
                     <View style={styles.row}>
                         {
                             info.map((item,index)=>(
-                                <ThemedText key={index.toString()} style={{fontSize:10}}>{item}{"  "}</ThemedText>
+                                <ThemedText key={index.toString()} style={{fontSize:10}}>{infoFormat(item)}{"  "}</ThemedText>
                             ))
                         }
                     </View>
                 </View>
             </View>
-            <TouchableOpacity onPress={()=>setLiked(!liked)} style={styles.listingFavoriteView2}>
-                <MaterialIcons name={liked?"favorite":"favorite-border"} size={20} color={liked?'red':'#000'}/>
+            <TouchableOpacity onPress={onLike} style={styles.listingFavoriteView2}>
+                <MaterialIcons name={saved.includes(id)?"favorite":"favorite-border"} size={20} color={saved.includes(id)?Colors.primary:'#000'}/>
             </TouchableOpacity>
         </TouchableOpacity>
     )

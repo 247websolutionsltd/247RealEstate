@@ -16,7 +16,7 @@ export const Colors = {
     backgroundSelected: '#E0E1E6',
     textSecondary: '#60646C',
     card: '#FFF',
-    line: "#EDEBE7",
+    line: "#d0cfcc",
     contrast:"#F2F2F2",
     paper:"#f5f3ec"
   },

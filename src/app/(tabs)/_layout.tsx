@@ -1,7 +1,7 @@
 import {
-    Dimensions,
-    Pressable,
-    View
+  Dimensions,
+  Pressable,
+  View
 } from "react-native";
 
 import { useTheme } from "@/hooks/use-theme";
@@ -15,9 +15,10 @@ const { width } = Dimensions.get("window");
 type IconName = keyof typeof Ionicons.glyphMap;
 const TAB_META: Record<string, { label: string; icon: IconName; iconActive: IconName }> = {
   home: { label: "Home", icon: "home-outline", iconActive: "home" },
-  location: { label: "Location", icon: "location-outline", iconActive: "location" },
-  notifications: { label: "Notifications", icon: "notifications-outline", iconActive: "notifications" },
-  favorites: { label: "Favorites", icon: "heart-outline", iconActive: "heart" },
+  categories: { label: "Categories", icon: "apps-outline", iconActive: "apps" },
+  search: { label: "Search", icon: "search-outline", iconActive: "search" },
+  saved: { label: "Saved", icon: "bookmark-outline", iconActive: "bookmark" },
+  profile: { label: "Profile", icon: "person-outline", iconActive: "person" },
 };
 
 interface TabBarRoute {
@@ -57,7 +58,7 @@ function CustomTabBar({ state, navigation }: TabBarProps) {
 
             <Ionicons
                 name={isFocused ? meta.iconActive : meta.icon}
-                size={25}
+                size={24}
                 color="#FFFFFF"
             />
         </Pressable>
@@ -77,9 +78,10 @@ export default function TabsLayout() {
   return (
     <Tabs tabBar={(props) => <CustomTabBar {...props} />} screenOptions={{ headerShown: false }}>
       <Tabs.Screen name="home" options={{ title: "Home" }} />
-      <Tabs.Screen name="location" options={{ title: "Stores" }} />
-      <Tabs.Screen name="notifications" options={{ title: "Chats" }} />
-      <Tabs.Screen name="favorites" options={{ title: "Categories" }} />
+      <Tabs.Screen name="search" options={{ title: "Search" }} />
+      <Tabs.Screen name="categories" options={{ title: "Categories" }} />
+      <Tabs.Screen name="saved" options={{ title: "Saved" }} />
+      <Tabs.Screen name="profile" options={{ title: "Profile" }} />
     </Tabs>
   );
 }

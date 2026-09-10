@@ -27,6 +27,8 @@ type AuthContextType = {
   logInForm: LogInForm;
   setLogInForm: any;
   updateLogInField: (field: "email" | "password", value: string)=>void;
+  handleSaved: (id:string)=>void;
+  saved:string[];
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(
@@ -62,6 +64,19 @@ export function AuthProvider({
     email: "",
     password: "",
   });
+
+  const [ saved, setSaved ] = useState<string[]>([]);
+
+  const handleSaved = (id:string)=>{
+    const savedData = [...saved];
+    const savedIndex = savedData.indexOf(id);
+    if(savedIndex !== -1){
+      savedData.splice(savedIndex,1);
+    }else{
+      savedData.push(id);
+    }
+    setSaved(savedData);
+  }
   
   const updateLogInField = (
     field: keyof typeof logInForm,
@@ -82,7 +97,9 @@ export function AuthProvider({
         updateRegisterField,
         logInForm,
         setLogInForm,
-        updateLogInField
+        updateLogInField,
+        handleSaved,
+        saved
       }}
     >
       {children}

@@ -9,6 +9,7 @@ export default function useHook() {
     }
     return result;
   }
+
   const formatPrice = (price: string) => {
     const number = Number(String(price).replace(/,/g, ""));
 
@@ -21,11 +22,26 @@ export default function useHook() {
     }
 
     return number.toString();
-    };
+  };
+
+  const infoFormat = (info:string) => {
+    const infoArray = info.split(" "); 
+    switch (infoArray[1]) {
+      case "Bedrooms":
+        return infoArray[0]+" bd"
+      case "Bathrooms":
+        return infoArray[0]+" ba"
+      case "Square-Feet":
+        return infoArray[0]+" sf"
+      default:
+        break;
+    }
+  }
   return {
     isLoading,
     setIsLoading,
     linter,
-    formatPrice
+    formatPrice,
+    infoFormat
   };
 }

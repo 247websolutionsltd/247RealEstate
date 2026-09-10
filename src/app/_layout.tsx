@@ -8,10 +8,10 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <AuthProvider>
         <Stack screenOptions={{headerShown: false}}>
-          <Stack.Screen name="index" />
+          {/* <Stack.Screen name="index" /> */}
           <Stack.Screen name="onboard" />
           <Stack.Screen name="detail" />
-          <Stack.Screen name="explore" />
+          {/* <Stack.Screen name="explore" /> */}
         </Stack>
       </AuthProvider>
     </ThemeProvider>
