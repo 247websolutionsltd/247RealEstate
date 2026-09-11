@@ -1,6 +1,6 @@
 import Container from "@/components/custom-container";
 import { Listing1, Listing2 } from "@/components/listing";
-import Neighbourhood from "@/components/neighbourhood-card";
+import { Neighbourhood } from "@/components/neighbourhood-card";
 import Search from "@/components/search";
 import { ThemedText } from "@/components/themed-text";
 import { Colors, Spacing } from "@/constants/theme";
@@ -18,7 +18,7 @@ export default function Home(){
     const theme = useTheme();
     const {handleSaved} = useAuth();
     return(
-        <Container style={{paddingBottom:80}}>
+        <Container style={{paddingBottom:80}} add>
             <View style={[styles.rowStretch, {padding:Spacing.three, paddingBottom:Spacing.one}]}>
                 <View>
                     <ThemedText>Hello, Welcome👋</ThemedText>

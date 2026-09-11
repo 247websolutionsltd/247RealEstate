@@ -1,12 +1,14 @@
 import { useTheme } from "@/hooks/use-theme";
 import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { SafeAreaView, SafeAreaViewProps } from "react-native-safe-area-context";
+import AddView from "./addView";
 
 interface ContainerProps extends SafeAreaViewProps{
     backgroundColor?:string;
     scroll?: boolean;
+    add?: boolean;
 }
-export default function Container({children, backgroundColor, style, edges=['top', 'bottom'], scroll=true}:ContainerProps){
+export default function Container({children, backgroundColor, style, edges=['top', 'bottom'], scroll=true, add=false}:ContainerProps){
     const theme = useTheme();
     return(
         <SafeAreaView style={{flex:1, backgroundColor:backgroundColor || theme.paper}} edges={edges}>
@@ -27,6 +29,10 @@ export default function Container({children, backgroundColor, style, edges=['top
                     {children}
                 </ScrollView>
             </KeyboardAvoidingView>
+            {
+                add &&
+                <AddView/>
+            }
         </SafeAreaView>
     )
 }

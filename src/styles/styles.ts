@@ -23,7 +23,7 @@ const createStyles = (theme:any, width:any, height:any, insets:any)=>StyleSheet.
     },
     button2:{
         borderWidth:1,
-        borderColor:theme.text,
+        borderColor:theme.line,
         alignItems:'center',
         justifyContent:'center',
         height:60,
@@ -64,7 +64,7 @@ const createStyles = (theme:any, width:any, height:any, insets:any)=>StyleSheet.
       position:'absolute',
       height,
       width,
-      paddingVertical: Spacing.three + 105,
+      paddingVertical: Spacing.three + 40,
       paddingHorizontal: Spacing.three
     },
     add:{
@@ -90,7 +90,8 @@ const createStyles = (theme:any, width:any, height:any, insets:any)=>StyleSheet.
       borderRadius: Radius.sm,
       flexDirection:'row',
       alignItems:'center',
-      paddingRight:Spacing.two
+      paddingRight:Spacing.two, 
+      backgroundColor:theme.background
     },
     line:{
       backgroundColor:theme.line,
@@ -358,6 +359,12 @@ const createStyles = (theme:any, width:any, height:any, insets:any)=>StyleSheet.
       borderColor:theme.line,
       borderRadius:Radius.sm,
     },
+    editButton:{
+      padding:Spacing.two,
+      borderWidth:1,
+      borderColor:Colors.primary,
+      borderRadius:Radius.sm,
+    },
     detailImage:{
       width:120,
       height:150,
@@ -371,5 +378,40 @@ const createStyles = (theme:any, width:any, height:any, insets:any)=>StyleSheet.
     neighbourhoodView:{
       flexDirection:'row',
       flexWrap:'wrap'
-    }    
+    },
+    profileView:{
+      padding:Spacing.three,
+      borderRadius:Radius.md,
+      backgroundColor:theme.text,
+      flexDirection:'row',
+      alignItems:'center',
+      justifyContent:'space-between',
+    },
+    profile:{
+      borderWidth:1,
+      borderColor:theme.line,
+      borderRadius:Radius.md,
+      backgroundColor:theme.background,
+      margin:Spacing.three
+    },
+    profileInd:{
+      flexDirection:'row',
+      alignItems:'center',
+      padding:Spacing.three,
+      borderBottomWidth:1,
+      borderColor:theme.line,
+    },
+    radio:{
+      width:40,
+      height:20,
+      borderRadius:20,
+      justifyContent:'center',
+      padding:3
+    },
+    radioCircle:{
+      width:16,
+      height:16,
+      borderRadius:100,
+      backgroundColor:theme.paper
+    }
 });

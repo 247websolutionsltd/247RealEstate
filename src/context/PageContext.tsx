@@ -19,6 +19,13 @@ type LogInForm = {
   password: string;
 };
 
+type ListingForm = {
+    address: string;
+    neighbourhood: string;
+    city: string;
+    state: string
+}
+
 type AuthContextType = {
   loading: boolean;
   registerForm: RegisterForm;
@@ -29,6 +36,8 @@ type AuthContextType = {
   updateLogInField: (field: "email" | "password", value: string)=>void;
   handleSaved: (id:string)=>void;
   saved:string[];
+  listingForm: ListingForm;
+  updateListingField: (field: "address" | "neighbourhood" | "city" | "state", value: string)=>void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(
@@ -88,6 +97,23 @@ export function AuthProvider({
     }));
   };
 
+  const [listingForm, setListingForm] = useState({
+    address: "",
+    neighbourhood: "",
+    city: "",
+    state: "",
+  });
+  
+  const updateListingField = (
+    field: keyof typeof listingForm,
+    value: string
+  ) => {
+    setListingForm((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -99,7 +125,9 @@ export function AuthProvider({
         setLogInForm,
         updateLogInField,
         handleSaved,
-        saved
+        saved,
+        listingForm,
+        updateListingField
       }}
     >
       {children}

@@ -11,6 +11,7 @@ export default function RootLayout() {
           {/* <Stack.Screen name="index" /> */}
           <Stack.Screen name="onboard" />
           <Stack.Screen name="detail" />
+          <Stack.Screen name="addListing" />
           {/* <Stack.Screen name="explore" /> */}
         </Stack>
       </AuthProvider>

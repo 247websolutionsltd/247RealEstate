@@ -94,8 +94,8 @@ export default function Detail(){
                     <View style={styles.detailPoster}>
                         <View style={styles.row}>
                             <Image
-                            style={styles.posterImage}
-                            source={poster.profileImage}
+                                style={styles.posterImage}
+                                source={poster.profileImage}
                             />
                             <View>
                                 <ThemedText type="bold">{poster.name}</ThemedText>

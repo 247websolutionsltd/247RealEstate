@@ -1,51 +1,50 @@
 import Container from "@/components/custom-container";
-import { Listing2 } from "@/components/listing";
-import Neighbourhood from "@/components/neighbourhood-card";
+import { Category, Neighbourhood2 } from "@/components/neighbourhood-card";
 import { ThemedText } from "@/components/themed-text";
-import { Spacing } from "@/constants/theme";
-import { listingData } from "@/data/listingData";
+import { Colors, Spacing } from "@/constants/theme";
+import categories from "@/data/categories";
 import neighbourhood from "@/data/neighbourhoods";
 import { useTheme } from "@/hooks/use-theme";
 import { useStyles } from "@/styles/styles";
 import { router } from "expo-router";
-import { FlatList, View } from "react-native";
+import { FlatList, TouchableOpacity, View } from "react-native";
 
 export default function Location(){
     const styles = useStyles();
     const theme = useTheme();
     return(
-        <Container style={{padding:Spacing.three}}>
-            <ThemedText type="large">Categories</ThemedText>
+        <Container style={{paddingBottom:80}}>
+            <ThemedText type="large" style={{padding:Spacing.three}}>Categories</ThemedText>
 
             <View>
-                <View style={[styles.rowStretch, {marginTop:Spacing.three}]}>
-                    <ThemedText>All Neighborhoods</ThemedText>
-                    <ThemedText>6 areas</ThemedText>
+                <View style={[styles.rowStretch, {marginTop:Spacing.three, paddingHorizontal:Spacing.three}]}>
+                    <ThemedText>All Categories</ThemedText>
+                    <TouchableOpacity>
+                        <ThemedText type="small" style={{color:Colors.primary}}>See all</ThemedText>
+                    </TouchableOpacity>
                 </View>
-                <View style={styles.neighbourhoodView}>
+                <View style={[styles.neighbourhoodView, {paddingHorizontal:Spacing.two}]}>
                     {
-                        neighbourhood.map((item, index)=>(
-                            <Neighbourhood
-                                title={item.title} 
-                                key={index.toString()} 
-                                image={item.image} 
-                                listingNumber={item.listings.length}
-                                start={index===0}
-                                end={index===neighbourhood.length-1}
+                        categories.map((item)=>(
+                            <View key={item.id} style={{width:'50%', padding:Spacing.one}}>
+                                <Category
+                                    title={item.title} 
+                                    image={item.image}
                                 />
+                            </View>
                         ))
                     }
                 </View>
             </View>
 
-            <View>
+            <View style={{paddingHorizontal:Spacing.three}}>
                 <View style={[styles.rowStretch, {marginTop:Spacing.three}]}>
                     <ThemedText>All Neighborhoods</ThemedText>
                     <ThemedText>6 areas</ThemedText>
                 </View>
                 <FlatList
                     scrollEnabled={false}
-                    data={listingData}
+                    data={neighbourhood}
                     showsHorizontalScrollIndicator={false}
                     keyExtractor={(item) => item.id}
                     ListEmptyComponent={()=>{
@@ -55,14 +54,12 @@ export default function Location(){
                         </View>
                     }}
                     renderItem={({ item, index }) => (
-                        <Listing2
-                            image={item.images[0]}
-                            title={item.name}
-                            location={item.location.city}
-                            price={item.price}
-                            info={item.info}
-                            tag={item.tag}
-                            onLike={()=>handleSaved(item.id)}
+                        <Neighbourhood2
+                            image={item.image}
+                            title={item.title}
+                            location={item.location}
+                            price={item.avPrice}
+                            homeNumber={neighbourhood.length}
                             id={item.id}
                             onPress={() => {
                                 router.navigate({
